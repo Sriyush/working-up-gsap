@@ -9,8 +9,8 @@ export default function Cruve() {
   useEffect(() => {
     const height = window.innerHeight;
 
-    const initialPath = `M100 0 L100 ${height} Q-100 ${height / 2} 100 0`;
-    const targetPath = `M100 0 L100 ${height} Q100 ${height / 2} 100 0`;
+   const initialPath = `M0 0 L0 ${height} Q200 ${height / 2} 0 0`;
+    const targetPath = `M0 0 L0 ${height} Q-100 ${height / 2} 0 0`;
 
     const curve: Variants = {
       initial: {

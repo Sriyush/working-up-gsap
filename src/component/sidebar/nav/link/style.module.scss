@@ -9,6 +9,12 @@
         background-color: black;
         border-radius: 50%;
         position: absolute;
-        left: -30px;
+        left: -50px;
+        // @media (max-width: 1000px) {
+        //   left: 10;
+        // }
+        // @media (max-width: 400px) {
+        //   left: 70%;
+        // }
     }
 }

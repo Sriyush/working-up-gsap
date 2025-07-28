@@ -4,4 +4,14 @@
     justify-content: space-between;
     font-size: 30px;
     gap: 40px;
+        @media (max-width: 1000px) {
+          gap: 30px;
+        }
+        @media (max-width: 500px) {
+          gap: 20px;
+        }
+        @media (max-width: 300px) {
+          gap: 10px;
+          font-size: 20px;
+        }
 }

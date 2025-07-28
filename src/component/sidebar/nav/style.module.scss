@@ -1,18 +1,23 @@
 .menu {
   height: calc(100vh - 60px);
   top: 30px;
-  right: 0;
+  left: 0;
   position: fixed;
   z-index: 13;
   color: black;
-
+  width: 30%;
   background-color: rgb(255, 255, 255);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 20px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-
+          @media (max-width: 1000px) {
+          width: 40%;
+        }
+        @media (max-width: 540px) {
+          width: 70%;
+        }
   .body {
     box-sizing: border-box;
     height: 100%;
@@ -20,14 +25,24 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
+          @media (max-width: 1000px) {
+          padding: 70px;
+        }
+        @media (max-width: 400px) {
+          padding: 30px;
+        }
     .nav {
       display: flex;
       flex-direction: column;
       font-size: 56px;
       gap: 12px;
       margin-top: 40px;
-
+          @media (max-width: 1000px) {
+          font-size: 30px;
+        }
+        @media (max-width: 400px) {
+          width: 15px;
+        }
       .header {
         text-transform: uppercase;
         font-size: 11px;

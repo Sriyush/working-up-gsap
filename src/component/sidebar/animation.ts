@@ -2,7 +2,7 @@ import { Variants } from "framer-motion";
 
 export const menuSlide: Variants = {
   initial: {
-    transform: "translateX(calc(100% + 100px))",
+    transform: "translateX(calc(-100% - 100px))",
   },
   enter: {
     transform: "translateX(0)",
@@ -12,7 +12,7 @@ export const menuSlide: Variants = {
     },
   },
   exit: {
-    transform: "translateX(calc(100% + 100px))",
+    transform: "translateX(calc(-100% - 100px))",
     transition: {
       duration: 0.8,
       ease: [0.76, 0, 0.24, 1] as [number, number, number, number],
