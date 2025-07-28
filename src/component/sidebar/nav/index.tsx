@@ -14,7 +14,7 @@ interface IndexProps {
 
 const navItems = [
   {
-    title: 'Work',
+    title: 'Home',
     href: '#work',
   },
   {
@@ -22,8 +22,8 @@ const navItems = [
     href: '#about',
   },
   {
-    title: 'Contact',
-    href: '#contact-me',
+    title: 'Projects',
+    href: '#projects',
   },
 ];
 

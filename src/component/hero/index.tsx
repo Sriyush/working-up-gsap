@@ -2,9 +2,8 @@ import { useEffect, useRef, forwardRef, useImperativeHandle } from "react";
 import gsap from "gsap";
 import styles from "./style.module.scss";
 
-const name = "PRIYANSHU BANSAL";
+const name = ["PRIYANSHU", "BANSAL"];
 
-// Expose `startAnimation` via forwardRef
 const HeroSection = forwardRef((_, ref) => {
   const letterRefs = useRef<HTMLSpanElement[]>([]);
 
@@ -27,23 +26,43 @@ const HeroSection = forwardRef((_, ref) => {
     },
   }));
 
-  return (
-    <section className={styles.hero}>
+  let charIndex = 0;
+
+return (
+  <section className={styles.hero}>
+    <div className={styles.wrapper}>
+      <div className={styles.tagline}>
+        <span className={styles.dot}></span>
+        JUST A WANNABE
+      </div>
+
       <div className={styles.text}>
-        {name.split("").map((char, index) => (
-          <span
-            key={index}
-            ref={(el) => {
-              if (el) letterRefs.current[index] = el;
-            }}
-            className={styles.letter}
+        {name.map((word, wordIndex) => (
+          <div
+            key={wordIndex}
+            className={`${styles.line} ${wordIndex === 1 ? styles.rightAlign : ""}`}
           >
-            {char === " " ? "\u00A0" : char}
-          </span>
+            {word.split("").map((char, i) => {
+              const index = charIndex++;
+              return (
+                <span
+                  key={index}
+                  ref={(el) => {
+                    if (el) letterRefs.current[index] = el;
+                  }}
+                  className={styles.letter}
+                >
+                  {char}
+                </span>
+              );
+            })}
+          </div>
         ))}
       </div>
-    </section>
-  );
+    </div>
+  </section>
+);
+
 });
 
 HeroSection.displayName = "HeroSection";
