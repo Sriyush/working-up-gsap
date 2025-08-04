@@ -126,11 +126,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-// transition: background-color 0.6s ease, transform 0.6s ease;
+  background-color: white;
+transition: background-color 0.6s ease, transform 0.6s ease;
 
-// &:hover {
-//   background-color: black;
-// }
+&:hover {
+  background-color: black;
+}
 
 }
 
@@ -140,30 +141,43 @@
         position: relative;
         z-index: 10;
         &::after, &::before{
+            background-color: black;
             content: "";
             display: block;
             height: 2px;
             width: 40%;
             margin: auto;
-            background-color: black;
             position: relative;
+            transition: background-color 0.6s ease, transform 0.6s ease;
+            @media (max-width: 700px) {
+                width:20% ;
+            // height: 1px;
+            }
         }
-        transition: background-color 0.6s ease, transform 0.6s ease;
-
 
 
         &::after{
             top: -5px;
+            @media (max-width: 700px) {
+                top: -3px;
+            }
         }
     
         &::before{
             top: 5px;
+            @media (max-width: 700px) {
+                top: 3px;
+            }
         }
+        // &:hover::after,
+        // &:hover::before {
+        //     background-color: white;
+        // }
     }
-//     .button:hover .burger::after,
-// .button:hover .burger::before {
-//   background-color: white;
-// }
+    .button:hover .burger::after,
+.button:hover .burger::before {
+  background-color: white;
+}
     .burgerActive{
     
         &::after{
