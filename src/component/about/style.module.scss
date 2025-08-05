@@ -41,6 +41,7 @@
       font-size: 2rem;
       line-height: 1.3;
       flex-wrap: wrap;
+
       .circleTarget {
         position: relative;
         color: #f4c6b0;
@@ -54,12 +55,13 @@
         font-size: 1.3rem;
       }
     }
+
     .squiggle {
       position: relative;
       display: inline-block;
-      margin-left: 1px;
-      margin-right: 1px;
+      margin: 0 1px;
     }
+
     .squiggle1 {
       position: absolute;
       bottom: -0.6em;
@@ -113,7 +115,6 @@
     border-radius: 50%;
     display: flex;
     font-weight: 900;
-    will-change: transform;
     font-family: "nothing", sans-serif;
     align-items: center;
     justify-content: center;
@@ -122,15 +123,7 @@
     z-index: 2;
     transition: transform 0.3s ease;
 
-    @media (max-width: 1120px) {
-      top: 4rem;
-      left: 4rem;
-      width: 90px;
-      height: 90px;
-      font-size: 0.75rem;
-    }
-
-    @media (max-width: 568px) {
+    @media (max-width: 1120px), (max-width: 568px) {
       top: 4rem;
       left: 4rem;
       width: 90px;
@@ -138,8 +131,66 @@
       font-size: 0.75rem;
     }
   }
+
+.marqueeContainer {
+  position: relative;
+  overflow: hidden;
+  margin-top: 10rem;
+  color: #f4c6b0;
+
+  // Add the border background using ::before
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    // background: #000000;
+    backdrop-filter: blur(3px);
+    border-radius: 5rem; // equivalent to Tailwind's rounded-lg
+    z-index: 0;
+    border: #888889;
+    border-color: #888889;
+  }
+
+  // Ensure content is above the background
+  > * {
+    position: relative;
+    z-index: 1;
+  }
 }
 
+.marqueeWrapper {
+  display: flex;
+  // width: 200%;
+  overflow: hidden;
+
+  &.reverse {
+    flex-direction: row-reverse;
+  }
+}
+
+.marquee {
+  display: inline-block;
+  white-space: nowrap;
+  will-change: transform;
+
+  span {
+    margin-right: 2rem;
+    font-size: 5rem;
+    font-family: "Satoshi-med", sans-serif;
+        @media (max-width: 768px) {
+    font-size: 3rem;
+  }
+    @media (max-width: 468px) {
+    font-size: 2rem;
+  }
+
+  }
+}
+
+
+}
+
+// Fonts
 @font-face {
   font-family: "nothing";
   src: url("/font/nothing/nothing-font.otf") format("opentype");

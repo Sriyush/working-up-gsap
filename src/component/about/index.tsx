@@ -8,9 +8,50 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 export function About() {
+  const renderSkills = (prefix: string) =>
+  [...Array(2)].map((_, i) =>
+    [
+      "React.js", "Next.js", "TypeScript", "Node.js", "PostgreSQL", "GSAP",
+      "Framer Motion", "Web3", "Rust", "TensorFlow", "Keras", "Python",
+      "HTML", "CSS", "Tailwind"
+    ].map((skill, j) => (
+      <span key={`${prefix}-${i}-${j}`}>{skill}</span>
+    ))
+  );
+
   const badgeRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const squiggleRef = useRef<SVGPathElement>(null);
+  const marqueeRef = useRef<HTMLDivElement>(null);
+  const marqueeRef2 = useRef<HTMLDivElement>(null);
+useEffect(() => {
+  if (!marqueeRef2.current) return;
+
+  const marquee = marqueeRef2.current;
+  const baseSpeed = 100; // pixels/sec
+gsap.set(marquee, { xPercent: -50 });
+  const tween = gsap.to(marquee, {
+    xPercent: 0,
+    ease: "none",
+    duration: marquee.offsetWidth / baseSpeed,
+    repeat: -1,
+  });
+
+}, []);
+
+useEffect(() => {
+  if (!marqueeRef.current) return;
+
+  const marquee = marqueeRef.current;
+  const baseSpeed = 100; // pixels/sec
+  const tween = gsap.to(marquee, {
+    xPercent: -50,
+    ease: "none",
+    duration: marquee.offsetWidth / baseSpeed,
+    repeat: -1,
+  });
+
+}, []);
 
   useEffect(() => {
     if (!badgeRef.current || !sectionRef.current) return;
@@ -87,9 +128,30 @@ export function About() {
           vision, crunch data like a pro.
         </h1>
       </div>
+
       <div ref={badgeRef} className={styles.badge}>
         Who Am I
       </div>
+<div className={styles.marqueeContainer}>
+  <div className={styles.marqueeWrapper}>
+    <div ref={marqueeRef} className={styles.marquee}>
+      {/* Scrolls left */}
+      {renderSkills("fwd")}
+    </div>
+  </div>
+</div>
+
+<div className={styles.marqueeContainer}>
+  <div className={styles.reverse}>
+    <div ref={marqueeRef2} className={styles.marquee} >
+      {/* Scrolls right */}
+      {renderSkills("rev")}
+    </div>
+  </div>
+</div>
+
+
+
     </section>
   );
 }
