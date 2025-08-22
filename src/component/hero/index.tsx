@@ -1,6 +1,7 @@
 import { useEffect, useRef, forwardRef, useImperativeHandle } from "react";
 import gsap from "gsap";
 import styles from "./style.module.scss";
+import PixelTrail from "../ui/pixeltrails";
 
 const name = ["PRIYANSHU", "BANSAL"];
 
@@ -60,6 +61,14 @@ return (
         ))}
       </div>
     </div>
+      {/* <PixelTrail
+    gridSize={50}
+    trailSize={0.2}
+    maxAge={200}
+    interpolate={5}
+    color="#000000"
+    gooeyFilter={{ id: "goo", strength: 12 }}
+  /> */}
   </section>
 );
 

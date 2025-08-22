@@ -1,10 +1,13 @@
 "use client";
 import { About } from "@/component/about";
+import { Footer } from "@/component/footer";
 import HeroSection from "@/component/hero";
 import Preloader from "@/component/preloader";
+import Project from "@/component/Projects";
+import PixelTrail from "@/component/ui/pixeltrails";
 import { AnimatePresence } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-
+// import "./globals.css";
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const heroRef = useRef<{ startAnimation: () => void }>(null);
@@ -26,17 +29,18 @@ export default function Home() {
     const handleScroll = () => {
       const heroSection = document.querySelector('[data-section="hero"]');
       const aboutSection = document.querySelector('[data-section="about"]');
-      const burger = document.querySelector('.burger') as HTMLElement;
+      const burger = document.querySelector(".burger") as HTMLElement;
 
       if (!burger || !heroSection || !aboutSection) return;
 
       const scrollY = window.scrollY;
-      const aboutTop = aboutSection.getBoundingClientRect().top + window.scrollY;
+      const aboutTop =
+        aboutSection.getBoundingClientRect().top + window.scrollY;
 
       if (scrollY >= aboutTop - window.innerHeight / 2) {
-        burger.style.setProperty('--burger-color', 'white');
+        burger.style.setProperty("--burger-color", "white");
       } else {
-        burger.style.setProperty('--burger-color', 'black');
+        burger.style.setProperty("--burger-color", "black");
       }
     };
 
@@ -45,14 +49,18 @@ export default function Home() {
   }, []);
 
   return (
-    <main>
-      <div className="burger" ref={burgerRef}></div>
+<main>
+  <div className="burger" ref={burgerRef}></div>
 
-      <AnimatePresence mode="wait">
-        {isLoading && <Preloader />}
-      </AnimatePresence>
-      <HeroSection ref={heroRef} />
-      <About />
-    </main>
+  <AnimatePresence mode="wait">
+    {isLoading && <Preloader />}
+  </AnimatePresence>
+
+  <HeroSection ref={heroRef} />
+  <About />
+  <Project />
+  <Footer/>
+</main>
+
   );
 }

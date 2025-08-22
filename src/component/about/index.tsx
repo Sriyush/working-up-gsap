@@ -4,54 +4,90 @@ import { useEffect, useRef } from "react";
 import styles from "./style.module.scss";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
+import Noise from "../ui/noise";
+import {
+  SiReact,
+  SiNextdotjs,
+  SiTypescript,
+  SiTailwindcss,
+} from "react-icons/si";
+import LogoLoop from "../ui/logoloop";
 gsap.registerPlugin(ScrollTrigger);
 
 export function About() {
-  const renderSkills = (prefix: string) =>
-  [...Array(2)].map((_, i) =>
-    [
-      "React.js", "Next.js", "TypeScript", "Node.js", "PostgreSQL", "GSAP",
-      "Framer Motion", "Web3", "Rust", "TensorFlow", "Keras", "Python",
-      "HTML", "CSS", "Tailwind"
-    ].map((skill, j) => (
-      <span key={`${prefix}-${i}-${j}`}>{skill}</span>
-    ))
-  );
+  // const renderSkills = (prefix: string) =>
+  //   [...Array(2)].map((_, i) =>
+  //     [
+  //       "React.js",
+  //       "Next.js",
+  //       "TypeScript",
+  //       "Node.js",
+  //       "PostgreSQL",
+  //       "GSAP",
+  //       "Framer Motion",
+  //       "Web3",
+  //       "Rust",
+  //       "TensorFlow",
+  //       "Keras",
+  //       "Python",
+  //       "HTML",
+  //       "CSS",
+  //       "Tailwind",
+  //     ].map((skill, j) => <span key={`${prefix}-${i}-${j}`}>{skill}</span>)
+  //   );
+  const techLogos = [
+    { node: <SiReact />, title: "React", href: "https://react.dev" },
+    { node: <SiNextdotjs />, title: "Next.js", href: "https://nextjs.org" },
+    {
+      node: <SiTypescript />,
+      title: "TypeScript",
+      href: "https://www.typescriptlang.org",
+    },
+    {
+      node: <SiTailwindcss />,
+      title: "Tailwind CSS",
+      href: "https://tailwindcss.com",
+    },
+  ];
 
   const badgeRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const squiggleRef = useRef<SVGPathElement>(null);
   const marqueeRef = useRef<HTMLDivElement>(null);
   const marqueeRef2 = useRef<HTMLDivElement>(null);
-useEffect(() => {
-  if (!marqueeRef2.current) return;
+  const getLogoHeight = () => {
+  if (typeof window === "undefined") return 150; // SSR safe
+  if (window.innerWidth < 640) return 80; // mobile
+  if (window.innerWidth < 1024) return 120; // tablet
+  return 150; // desktop
+};
 
-  const marquee = marqueeRef2.current;
-  const baseSpeed = 100; // pixels/sec
-gsap.set(marquee, { xPercent: -50 });
-  const tween = gsap.to(marquee, {
-    xPercent: 0,
-    ease: "none",
-    duration: marquee.offsetWidth / baseSpeed,
-    repeat: -1,
-  });
+  useEffect(() => {
+    if (!marqueeRef2.current) return;
 
-}, []);
+    const marquee = marqueeRef2.current;
+    const baseSpeed = 100; // pixels/sec
+    gsap.set(marquee, { xPercent: -50 });
+    const tween = gsap.to(marquee, {
+      xPercent: 0,
+      ease: "none",
+      duration: marquee.offsetWidth / baseSpeed,
+      repeat: -1,
+    });
+  }, []);
 
-useEffect(() => {
-  if (!marqueeRef.current) return;
+  useEffect(() => {
+    if (!marqueeRef.current) return;
 
-  const marquee = marqueeRef.current;
-  const baseSpeed = 100; // pixels/sec
-  const tween = gsap.to(marquee, {
-    xPercent: -50,
-    ease: "none",
-    duration: marquee.offsetWidth / baseSpeed,
-    repeat: -1,
-  });
-
-}, []);
+    const marquee = marqueeRef.current;
+    const baseSpeed = 100; // pixels/sec
+    const tween = gsap.to(marquee, {
+      xPercent: -50,
+      ease: "none",
+      duration: marquee.offsetWidth / baseSpeed,
+      repeat: -1,
+    });
+  }, []);
 
   useEffect(() => {
     if (!badgeRef.current || !sectionRef.current) return;
@@ -69,33 +105,39 @@ useEffect(() => {
       },
     });
     if (squiggleRef.current) {
-        gsap.fromTo(
-          squiggleRef.current,
-          { strokeDashoffset: 979.82 },
-          {
-            strokeDashoffset: 0,
-            ease: "power2.out",
-            duration: 5,
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: "top 50%",
-              end: "top 50%",
-              toggleActions: "play none none reverse",
-            },
-          }
-        );
-      }
-
+      gsap.fromTo(
+        squiggleRef.current,
+        { strokeDashoffset: 979.82 },
+        {
+          strokeDashoffset: 0,
+          ease: "power2.out",
+          duration: 5,
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 50%",
+            end: "top 50%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+    }
   }, []);
 
   return (
     <section ref={sectionRef} className={styles.about}>
       <div className={styles.imageContainer}>
-        <img src="/allbg2.jpg" alt="Background" />
+        {/* Noise instead of bg image */}
+        <Noise
+          patternSize={250}
+          patternScaleX={1}
+          patternScaleY={1}
+          patternRefreshInterval={2}
+          patternAlpha={15}
+        />
       </div>
       <div className={styles.content}>
         <h1>
-          Always shipping, always {" "}
+          Always shipping, always{" "}
           <span className={styles.squiggle}>
             learning
             <svg
@@ -132,26 +174,37 @@ useEffect(() => {
       <div ref={badgeRef} className={styles.badge}>
         Who Am I
       </div>
-<div className={styles.marqueeContainer}>
-  <div className={styles.marqueeWrapper}>
-    <div ref={marqueeRef} className={styles.marquee}>
-      {/* Scrolls left */}
-      {renderSkills("fwd")}
-    </div>
-  </div>
-</div>
+      {/* <div className={styles.marqueeContainer}>
+        <div className={styles.marqueeWrapper}>
+          <div ref={marqueeRef} className={styles.marquee}>
+            {renderSkills("fwd")}
+          </div>
+        </div>
+      </div>
 
-<div className={styles.marqueeContainer}>
-  <div className={styles.reverse}>
-    <div ref={marqueeRef2} className={styles.marquee} >
-      {/* Scrolls right */}
-      {renderSkills("rev")}
-    </div>
-  </div>
-</div>
+      <div className={styles.marqueeContainer}>
+        <div className={styles.reverse}>
+          <div ref={marqueeRef2} className={styles.marquee}>
+            {renderSkills("rev")}
+          </div>
+        </div>
+      </div> */}
+      <div className={styles.marqueeContainer}>
+              <LogoLoop
+        logos={techLogos}
+        speed={120}
+        direction="left"
+        logoHeight={getLogoHeight()}
+        gap={40}
+        pauseOnHover
+        scaleOnHover
+        fadeOut
 
+        fadeOutColor="#ffffff"
 
-
+        ariaLabel="Technology partners"
+      />
+      </div>
     </section>
   );
 }

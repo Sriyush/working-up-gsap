@@ -1,6 +1,7 @@
 .about {
   position: relative;
   width: 100%;
+
   min-height: 100vh;
   padding: 4rem;
   display: flex;
@@ -8,25 +9,28 @@
   overflow: hidden;
   background: #fff;
 
-  @media (max-width: 768px) {
-    padding: 2rem 1rem;
-  }
+  // @media (max-width: 768px) {
+  //   padding: 2rem 1rem;
+  // }
 
-  .imageContainer {
+.imageContainer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  margin: 30px;
+  border-radius: 30px;
+  overflow: hidden;
+  background-color: #141516;
+
+  canvas {
     position: absolute;
     inset: 0;
-    z-index: 0;
-    margin: 30px;
-    border-radius: 30px;
-    overflow: hidden;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: brightness(0.7);
-    }
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
   }
+}
+
 
   .content {
     position: relative;
@@ -135,24 +139,26 @@
 .marqueeContainer {
   position: relative;
   overflow: hidden;
-  margin-top: 10rem;
-  color: #f4c6b0;
-
-  // Add the border background using ::before
+  top: 20rem;
+  margin-bottom: 6rem;
+  // margin-top: 10rem;
+  color: #bfbfbf;
+      @media (max-width: 568px) {
+      top: 12rem;
+    }
   &::before {
     content: "";
     position: absolute;
     inset: 0;
     // background: #000000;
     backdrop-filter: blur(3px);
-    border-radius: 5rem; // equivalent to Tailwind's rounded-lg
+    border-radius: 5rem;
     z-index: 0;
     border: #888889;
     border-color: #888889;
   }
 
-  // Ensure content is above the background
-  > * {
+ * {
     position: relative;
     z-index: 1;
   }
@@ -162,6 +168,7 @@
   display: flex;
   // width: 200%;
   overflow: hidden;
+  flex-shrink: 0;
 
   &.reverse {
     flex-direction: row-reverse;
@@ -172,18 +179,30 @@
   display: inline-block;
   white-space: nowrap;
   will-change: transform;
-
+  overflow: hidden;
   span {
     margin-right: 2rem;
     font-size: 5rem;
     font-family: "Satoshi-med", sans-serif;
         @media (max-width: 768px) {
     font-size: 3rem;
+    
   }
-    @media (max-width: 468px) {
-    font-size: 2rem;
-  }
+  //   @media (max-width: 468px) {
+  //   font-size: 2rem;
+  // }
+  // background: repeating-linear-gradient(
+  //   -45deg,
+  //   white 0 20px,
+  //   black 20px 40px
+  // );
 
+  // -webkit-background-clip: text;
+  // -webkit-text-fill-color: transparent;
+
+  // // Outline stroke
+  // -webkit-text-stroke: 2px white;
+  // paint-order: stroke fill;
   }
 }
 
