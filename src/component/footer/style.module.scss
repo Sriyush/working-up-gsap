@@ -1,5 +1,105 @@
-.footer{
-    position: relative;
+.footer {
+  position: relative;
+  height: 100vh; // main container fills full viewport
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 0 10px;
+  .mainContainer {
+    position: absolute;
     height: 100vh;
-    overflow: hidden;
+    width: calc(100vw - 20px);
+    .upper {
+      min-height: 50%;
+      margin-top: 1rem;
+      // background: black;
+
+      color: black;
+      h1 {
+        font-family: "Nyght-bold-italic";
+        font-size: 4rem;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+      }
+      .Experience {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem; // spacing between experiences
+        width: 100%;
+        padding: 3rem;
+
+        .expCard {
+          flex: 1;
+          // background: white;
+          border-radius: 20px;
+          padding: 2rem;
+          font-family: "Satoshi-med";
+          color: black;
+          // box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+          transition: transform 0.3s ease;
+
+          &:hover {
+            transform: translateY(-5px);
+          }
+
+          h2 {
+            font-family: "Satoshi-med";
+            font-size: 2rem;
+            margin-bottom: 1rem;
+          }
+
+          p {
+            font-size: 1rem;
+            line-height: 1.4;
+          }
+        }
+
+        // Responsive
+        @media (max-width: 1000px) {
+          flex-direction: column;
+
+          .expCard {
+            width: 100%;
+          }
+        }
+
+        @media (min-width: 1001px) {
+          flex-direction: row;
+
+          .expCard {
+            max-width: 45%;
+          }
+        }
+      }
+    }
+
+    .lower {
+      min-height: 50%;
+      background-color: #141516;
+      border-radius: 50px 50px 0 0;
+    }
+  }
+}
+
+@font-face {
+  font-family: "Nyght-med";
+  src: url("/font/nyghtserif/NyghtSerif-MediumItalic.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Nyght-bold-italic";
+  src: url("/font/nyghtserif/NyghtSerif-BoldItalic.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Satoshi-med";
+  src: url("/font/satoshi/Satoshi-Medium.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
 }
