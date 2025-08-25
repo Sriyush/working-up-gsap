@@ -1,3 +1,4 @@
+import Noise from "../ui/noise";
 import PixelTrail from "../ui/pixeltrails";
 import styles from "./style.module.scss";
 export function Footer() {
@@ -18,17 +19,44 @@ export function Footer() {
           </h1>
 <div className={styles.Experience}>
   <div className={styles.expCard}>
-    <h2>Frontend Developer</h2>
-    <p>FxDx • 6 months • React.js, Next.js, Zustand, Rust backend, TradingView, Web3 Casino</p>
+    <h2>University Teaching Assistant</h2>
+    <p className={styles.Cname}>Vellore Institute of Technology</p>
+    <div className={styles.keypoints}>
+          <p>
+      collaborated with the course instructor to enhance the learning experience for Students
+    </p>
+    <p>
+      Conducted weekly tutoring sessions to support students in understanding deep learning condepts.
+    </p>
+
+    </div>
   </div>
   <div className={styles.expCard}>
-    <h2>Project: DbSynchro</h2>
-    <p>Full-stack sync tool using Google API, PostgreSQL, Next.js, Docker, Sheets ↔ MySQL</p>
+    <h2>Project Intern</h2>
+    <p className={styles.Cname}>Dabur India Ltd.</p>
+    <div className={styles.keypoints}>
+          <p>Developed a basic ML-based for Dabur Products</p>
+    <p>
+      Conducted sentiment analysis on customer reviews using support vector Machines (SVM)
+    </p>
+    <p>
+      Provided actionable insights to the marketing team based on sentiment trends
+    </p>
+    </div>
   </div>
 </div>
 
         </div>
-        <div className={styles.lower}></div>
+        <div className={styles.lower}>
+
+                <Noise
+        patternSize={250}
+        patternScaleX={1}
+        patternScaleY={1}
+        patternRefreshInterval={2}
+        patternAlpha={15}
+      />
+        </div>
       </div>
     </section>
   );
